@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -65,6 +68,11 @@ public class AppKeplerTeste extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButtonMotorEsquerdo.setText("LIGAR MOTOR ESQUERDO");
+        jButtonMotorEsquerdo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMotorEsquerdoActionPerformed(evt);
+            }
+        });
 
         jButtonMotorDireito.setText("LIGAR MOTOR DIREITO");
 
@@ -94,12 +102,37 @@ public class AppKeplerTeste extends javax.swing.JFrame {
         jButtonTestarCarga.setText("VALIDAR CARGA");
 
         jMenuSobre.setText("Sobre");
+        jMenuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuSobreMouseClicked(evt);
+            }
+        });
+        jMenuSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSobreActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenuSobre);
 
         jMenuAjuda.setText("Ajuda");
+        jMenuAjuda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuAjudaMouseClicked(evt);
+            }
+        });
+        jMenuAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAjudaActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenuAjuda);
 
         jMenuSair.setText("Sair");
+        jMenuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSairActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenuSair);
 
         setJMenuBar(jMenuBar1);
@@ -161,6 +194,38 @@ public class AppKeplerTeste extends javax.swing.JFrame {
     private void jComboBoxPortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPortaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxPortaActionPerformed
+
+    private void jButtonMotorEsquerdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMotorEsquerdoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonMotorEsquerdoActionPerformed
+
+    private void jMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSobreActionPerformed
+       JFsobre sobre = new JFsobre();
+       sobre.setVisible(true);
+    }//GEN-LAST:event_jMenuSobreActionPerformed
+
+    private void jMenuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAjudaActionPerformed
+        // TODO add your handling code here:
+         JFajuda ajuda = new JFajuda();
+       ajuda.setVisible(true);
+    }//GEN-LAST:event_jMenuAjudaActionPerformed
+
+    private void jMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuSairActionPerformed
+
+    private void jMenuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSobreMouseClicked
+        // TODO add your handling code here:
+         JFsobre sobre = new JFsobre();
+       sobre.setVisible(true);
+    }//GEN-LAST:event_jMenuSobreMouseClicked
+
+    private void jMenuAjudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAjudaMouseClicked
+        // TODO add your handling code here:
+         JFajuda ajuda = new JFajuda();
+       ajuda.setVisible(true);
+    }//GEN-LAST:event_jMenuAjudaMouseClicked
 
     /**
      * @param args the command line arguments
