@@ -1,3 +1,5 @@
+package appkeplerteste;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -34,7 +36,8 @@ public class JFsobre extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setType(java.awt.Window.Type.UTILITY);
 
         sobre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         sobre.setText("EQUIPE KEPLER");

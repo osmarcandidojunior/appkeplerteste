@@ -1,3 +1,5 @@
+package appkeplerteste;
+
 
 import javax.swing.JOptionPane;
 
@@ -12,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author hiara_pickler
  */
 public class AppKeplerTeste extends javax.swing.JFrame {
-
+    Arduino kepler = new Arduino();
     /**
      * Creates new form AppKeplerTeste
      */
@@ -65,7 +67,7 @@ public class AppKeplerTeste extends javax.swing.JFrame {
         jRadioButtonMenuItem3.setSelected(true);
         jRadioButtonMenuItem3.setText("jRadioButtonMenuItem3");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jButtonMotorEsquerdo.setText("LIGAR MOTOR ESQUERDO");
         jButtonMotorEsquerdo.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +77,11 @@ public class AppKeplerTeste extends javax.swing.JFrame {
         });
 
         jButtonMotorDireito.setText("LIGAR MOTOR DIREITO");
+        jButtonMotorDireito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMotorDireitoActionPerformed(evt);
+            }
+        });
 
         jButtonTestarSensor.setText("TESTAR SENSOR SEGUIDOR DE LINHA");
         jButtonTestarSensor.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +97,7 @@ public class AppKeplerTeste extends javax.swing.JFrame {
 
         jLabelPorta.setText("PORTA:");
 
-        jComboBoxPorta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
+        jComboBoxPorta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" }));
         jComboBoxPorta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxPortaActionPerformed(evt);
@@ -107,11 +114,6 @@ public class AppKeplerTeste extends javax.swing.JFrame {
                 jMenuSobreMouseClicked(evt);
             }
         });
-        jMenuSobre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSobreActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(jMenuSobre);
 
         jMenuAjuda.setText("Ajuda");
@@ -120,17 +122,12 @@ public class AppKeplerTeste extends javax.swing.JFrame {
                 jMenuAjudaMouseClicked(evt);
             }
         });
-        jMenuAjuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAjudaActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(jMenuAjuda);
 
         jMenuSair.setText("Sair");
-        jMenuSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSairActionPerformed(evt);
+        jMenuSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuSairMouseClicked(evt);
             }
         });
         jMenuBar1.add(jMenuSair);
@@ -142,24 +139,28 @@ public class AppKeplerTeste extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelPorta)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonTestarPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonTestarCarga)))
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabelPorta, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBoxPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButtonTestarPorta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonTestarCarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButtonMotorEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonTestarSensor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonMotorDireito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonMotorEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonTestarSensor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonMotorDireito, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -167,9 +168,9 @@ public class AppKeplerTeste extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jButtonMotorEsquerdo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(jButtonMotorDireito)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(jButtonTestarSensor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -191,41 +192,34 @@ public class AppKeplerTeste extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonTestarSensorActionPerformed
 
-    private void jComboBoxPortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPortaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxPortaActionPerformed
-
     private void jButtonMotorEsquerdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMotorEsquerdoActionPerformed
-        // TODO add your handling code here:
+        kepler.comunicacaoArduino(jButtonMotorEsquerdo);
         
     }//GEN-LAST:event_jButtonMotorEsquerdoActionPerformed
 
-    private void jMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSobreActionPerformed
-       JFsobre sobre = new JFsobre();
-       sobre.setVisible(true);
-    }//GEN-LAST:event_jMenuSobreActionPerformed
-
-    private void jMenuAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAjudaActionPerformed
-        // TODO add your handling code here:
-         JFajuda ajuda = new JFajuda();
-       ajuda.setVisible(true);
-    }//GEN-LAST:event_jMenuAjudaActionPerformed
-
-    private void jMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSairActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuSairActionPerformed
-
     private void jMenuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSobreMouseClicked
         // TODO add your handling code here:
-         JFsobre sobre = new JFsobre();
-       sobre.setVisible(true);
+        JFsobre sobre = new JFsobre();
+        sobre.setVisible(true);
     }//GEN-LAST:event_jMenuSobreMouseClicked
 
     private void jMenuAjudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAjudaMouseClicked
         // TODO add your handling code here:
-         JFajuda ajuda = new JFajuda();
-       ajuda.setVisible(true);
+        JFajuda ajuda = new JFajuda();
+        ajuda.setVisible(true);
     }//GEN-LAST:event_jMenuAjudaMouseClicked
+
+    private void jMenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSairMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jMenuSairMouseClicked
+
+    private void jButtonMotorDireitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMotorDireitoActionPerformed
+        kepler.comunicacaoArduino(jButtonMotorDireito);
+    }//GEN-LAST:event_jButtonMotorDireitoActionPerformed
+
+    private void jComboBoxPortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPortaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPortaActionPerformed
 
     /**
      * @param args the command line arguments
