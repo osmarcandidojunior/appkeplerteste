@@ -97,7 +97,7 @@ public class AppKeplerTeste extends javax.swing.JFrame {
 
         jLabelPorta.setText("PORTA:");
 
-        jComboBoxPorta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" }));
+        jComboBoxPorta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" }));
         jComboBoxPorta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxPortaActionPerformed(evt);
@@ -105,8 +105,18 @@ public class AppKeplerTeste extends javax.swing.JFrame {
         });
 
         jButtonTestarPorta.setText("TESTAR PORTA");
+        jButtonTestarPorta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestarPortaActionPerformed(evt);
+            }
+        });
 
         jButtonTestarCarga.setText("VALIDAR CARGA");
+        jButtonTestarCarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestarCargaActionPerformed(evt);
+            }
+        });
 
         jMenuSobre.setText("Sobre");
         jMenuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -153,22 +163,22 @@ public class AppKeplerTeste extends javax.swing.JFrame {
                                     .addComponent(jButtonTestarPorta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButtonTestarCarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jButtonMotorEsquerdo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonTestarSensor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButtonTestarSensor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jButtonMotorDireito, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonMotorEsquerdo, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonMotorDireito, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(12, 12, 12)
                 .addComponent(jButtonMotorEsquerdo)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonMotorDireito)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -193,8 +203,8 @@ public class AppKeplerTeste extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonTestarSensorActionPerformed
 
     private void jButtonMotorEsquerdoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMotorEsquerdoActionPerformed
-        kepler.comunicacaoArduino(jButtonMotorEsquerdo);
-        
+        String motor_esquerdo = jButtonMotorEsquerdo.getText();
+        kepler.comunicacaoArduino(motor_esquerdo);
     }//GEN-LAST:event_jButtonMotorEsquerdoActionPerformed
 
     private void jMenuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSobreMouseClicked
@@ -214,12 +224,24 @@ public class AppKeplerTeste extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuSairMouseClicked
 
     private void jButtonMotorDireitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMotorDireitoActionPerformed
-        kepler.comunicacaoArduino(jButtonMotorDireito);
+        String motor_direito = jButtonMotorDireito.getText();
+        kepler.comunicacaoArduino(motor_direito);
     }//GEN-LAST:event_jButtonMotorDireitoActionPerformed
 
     private void jComboBoxPortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPortaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxPortaActionPerformed
+
+    private void jButtonTestarPortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestarPortaActionPerformed
+        String valor = ""+jComboBoxPorta.getSelectedItem();
+        kepler.comunicacaoArduino(valor);
+        System.out.println(valor);
+    }//GEN-LAST:event_jButtonTestarPortaActionPerformed
+
+    private void jButtonTestarCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestarCargaActionPerformed
+        String testar_carga = jButtonTestarCarga.getText();
+        kepler.comunicacaoArduino(testar_carga);
+    }//GEN-LAST:event_jButtonTestarCargaActionPerformed
 
     /**
      * @param args the command line arguments
